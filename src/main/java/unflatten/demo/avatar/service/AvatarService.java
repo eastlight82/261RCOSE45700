@@ -1,8 +1,8 @@
 package unflatten.demo.avatar.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import unflatten.demo.avatar.api.ApiDtos;
@@ -127,7 +127,7 @@ public class AvatarService {
     private String toJson(JsonNode node) {
         try {
             return objectMapper.writeValueAsString(node == null ? objectMapper.createObjectNode() : node);
-        } catch (JsonProcessingException ex) {
+        } catch (JacksonException ex) {
             throw new IllegalArgumentException("Invalid JSON payload", ex);
         }
     }
@@ -135,7 +135,7 @@ public class AvatarService {
     private JsonNode toJsonNode(String json) {
         try {
             return objectMapper.readTree(json);
-        } catch (JsonProcessingException ex) {
+        } catch (JacksonException ex) {
             throw new IllegalStateException("Stored JSON is invalid", ex);
         }
     }

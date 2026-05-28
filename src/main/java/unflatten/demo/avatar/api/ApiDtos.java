@@ -1,6 +1,6 @@
 package unflatten.demo.avatar.api;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 import java.time.Instant;
 import java.util.List;
